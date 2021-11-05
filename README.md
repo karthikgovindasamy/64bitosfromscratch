@@ -2,7 +2,7 @@
 This is to extend the 512 bytes limit of the bios. 
 Reading Disk..
 
-We use INT13h AH=02h: Read sectors from Drive
+We use INT13h AH=02h to read sectors from Drive
 
                 Parameters
 | Register | Values |
