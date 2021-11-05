@@ -1,28 +1,30 @@
 ; Print Hello world on screen
+[org 0x7c00]
 
-mov ah, 0x0e
-mov al, 'h'
-int 0x10
-mov al, 'e'
-int 0x10
-mov al, 'l'
-int 0x10
-mov al, 'l'
-int 0x10
-mov al, 'o'
-int 0x10
-mov al, 'w'
-int 0x10
-mov al, 'o'
-int 0x10
-mov al,'r'
-int 0x10
-mov al,'l'
-int 0x10
-mov al,'d'
-int 0x10
+mov bp,0x7c00
+mov sp,bp
+
+mov bx, Teststring
+
+call print_string
 
 jmp $
+
+print_string:
+    mov ah,0x0e
+    Loop:
+        cmp [bx],byte 0
+        je .Exit
+            mov al,[bx]
+            int 0x10
+            inc bx
+            jmp Loop
+        .Exit:
+            ret
+
+
+Teststring:
+    db 'This is a test String',0
 
 times 510 - ($-$$) db 0
 
